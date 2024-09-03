@@ -2,7 +2,7 @@
 
 ### Description
 
-Zenquotes is a fun place to get your daily quote.  Go to [https://zenquotes.io](https://zenquotes.io/) to read more.  What's even better is that they have an API.  Here, we are using the random quote API (this example is in the python folder).  The data flow is:
+Zenquotes is a fun place to get your daily quote.  Go to [https://zenquotes.io](https://zenquotes.io/) to read more.  What's even better is that they have an API.  Here, we are using the random quote API (this example is in the sentant folder of the definitions repository).  The data flow is:
 
 ```mermaid
 sequenceDiagram

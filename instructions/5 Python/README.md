@@ -1,6 +1,6 @@
 # Python Examples
 
-To illustrate how to set up Sentants and use the GraphQL interface, there are several python examples in the folder.
+To illustrate how to set up Sentants and use the GraphQL interface, there are several python examples in the folder on the definitions repository.
 
 ### Table of Contents
 
@@ -8,4 +8,3 @@ To illustrate how to set up Sentants and use the GraphQL interface, there are se
 
 1. [Reality2 Library](Reality2%20Library.md)
 2. [Example](Example.md)
-

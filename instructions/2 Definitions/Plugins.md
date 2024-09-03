@@ -14,7 +14,7 @@ When defining plugins, both inbuilt and external, you can call them whatever you
 
 Inbuilt plugins are ones that are defined as part of the code that is running on the Node.  These are Elixir Apps with a predetermined interface and are using the resources of the Node.  Examples include many of the core features of the Reality2 node such as a Web interface, a Geospatial module, Authentication, Integration with IoT device hardware and the Pathing Name System.
 
-The plugin is built in Elixir, and used in the Automations section.  If you want to learn how to create your own inbuilt plugins, [look here](Inbuilt%20plugin%20HOWTO.md).
+The plugin is built in Elixir or Rust, and used in the Automations section.  If you want to learn how to create your own inbuilt plugins, [look here](Inbuilt%20plugin%20HOWTO.md).
 
 ### External plugins
 
@@ -174,6 +174,3 @@ method = "POST"
   ]
 }
 ```
-
-
-
