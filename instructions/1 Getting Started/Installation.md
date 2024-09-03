@@ -8,7 +8,7 @@ The instructions below are for installing and using the reference implementation
 
 There are some versions of Reality2 Nodes pre-compiled, ready for use.  This is the easy way to get going...
 
-To use, head over to the [releases](https://github.com/roycdavies/reality2/releases) section and download the appropriate version.  Further instructions are there.
+To use, head over to the [releases](https://github.com/roycdavies/reality2/releases) section of the [reality2-node-core-elixir](https://github.com/reality-two/reality2-node-core-elixir) repository and download the appropriate version.  Further instructions are there.
 
 ### Compile-it-yourself
 
@@ -20,7 +20,7 @@ If there is no version for your platform and OS, then you'll have to do it the h
 
 #### Step 2
 
-- Clone the GIT repository.  If that doesn't make sense to you, then you should go find that Linux guru.
+- Clone the [reality2-node-core-elixir](https://github.com/reality-two/reality2-node-core-elixir) GIT repository.  If that doesn't make sense to you, then you should go find that Linux guru.
 - I suggest creating a folder called Reality2, and cloning the repository into that folder.  You will end up with a folder inside the Reality2 folder called 'reality2-node-core-elixir'.  In the main Reality2 folder, you can create useful files for private API keys without them ending up in the repository.  For example, below, we create a file to hold your OpenAI API key.
 
 ```bash
@@ -32,17 +32,6 @@ cd reality2-node-core-elixir
 ```
 
 #### Step 3
-
-- Make a note of the working directory for this installation.  You will need this later.
-
-```bash
-pwd
-/Users/rdav031/Development/Reality2/reality2-node-core-elixir
-```
-
-
-
-#### Step 4
 
 - Install Erlang and Elixir.  I have found that the installations via [asdf](https://asdf-vm.com/) are good, and you can get the latest versions of Erlang and Elixir.  Be warned, though, that Erlang is compiled from source using this method.  This is mostly fine, except when trying to install on a small wearable linux computer with limited processing power as it can take some time.
 - You may need to install some libraries to compile Erlang:
@@ -68,6 +57,10 @@ asdf install elixir latest
 asdf global elixir latest
 asdf local elixir latest
 ```
+
+#### Step 4 
+
+- Install Rust (at least, if you are intending to use the Rust plugins).  The best place to see how to do that is [here](https://www.rust-lang.org/tools/install).
 
 #### Step 5
 
@@ -116,6 +109,8 @@ or, if you want to test production mode:
 ./run_as_prod
 ```
 
+You can also just use the `run` command in the main folder to run in developer mode.
+
 You should see somehthing like this (may vary depending on the plugins installed, and the current verison of erlang and elixir):
 
 ```bash
@@ -142,5 +137,5 @@ Congratulations, you now have a Reality2 node up and running.  Feels good doesn'
 
 #### Troubleshooting
 
-- There are many places where this can fail.  Because you are compiling and running from source, you have to have all the libraries and tools in place first, and then you can run the Reality2 Node. 
+- There are many places where this can fail.  Because you are compiling and running from source, you have to have all the libraries and tools in place first, and then you can run the Reality2 Node.
 - The release versions are precompiled and packaged to be ready to run for different architectures.
