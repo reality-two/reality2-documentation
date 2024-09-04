@@ -12,7 +12,7 @@ The WebApp is designed to look a bit like a regular web browser, and if you pres
 
 At the top left; the back, forward and reload buttons work as you might expect, going between Grid view and an individual Sentant and back again, for example.
 
-The centre text box contains the Sentant Path.  This is a line separated path from the current node to the sentant of interest.  Presently, this would only be the the Node IP address and the Sentant Name, for example: `localhost|Auckland Museum`
+The centre text box contains the Sentant Path.  This is a line separated path from the current node to the sentant of interest.  Presently, this would only be the the Node IP address and the Sentant Name, for example: `localhost|Auckland Museum`  You can link to another Node easily enough as well, for example: `192.168.1.10|A Sentant`
 
 ![](.images/DOl8TPmPU1xel.png)
 
