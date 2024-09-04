@@ -90,12 +90,12 @@ npm install -g yarn
 
 ```bash
 cd scripts
-./web_build
+./build_webapp sentants
 ```
 
 #### Step 7
 
-- Run the Reality2 node.  Back out again to the main level of the respository, and into the scripts directory, and set it going.
+- Run the Reality2 node.  From the scripts directory, set it is going.
 
 ```bash
 # In the scripts folder.
@@ -111,7 +111,7 @@ or, if you want to test production mode:
 
 You can also just use the `run` command in the main folder to run in developer mode.
 
-You should see somehthing like this (may vary depending on the plugins installed, and the current verison of erlang and elixir):
+You should see something like this (may vary depending on the plugins installed, and the current version of erlang and elixir):
 
 ```bash
 [ai.reality2 0.1.9] started successfully.
@@ -125,13 +125,15 @@ Interactive Elixir (1.16.3) - press Ctrl+C to exit (type h() ENTER for help)
 iex(1)> 
 ```
 
-Congratulations, you now have a Reality2 node up and running.  Feels good doesn't it?  Your life is coming together.
+Congratulations, you now have a Reality2 node up and running.  Feels good, doesn't it?  Your life is coming together.
 
 #### Step 8
 
 - Have a look at it.  Open a browser and go to `https://lcoalhost:4005`.  Click past the info about this being a potentially dangerous site due to self-signed certificates.  You accept the risk, right? (if you want, you can make your own certificates - a good idea actually - that can be a bit of homework).
 
-![](.images/sNoMR8fMaujOQ.png)
+![](.images/4U7eanM9ORvBo.png)
+
+
 
 - Not surprisingly, there is nothing to see, because you haven't loaded any Sentants yet, but we know it is up and running, and the web interface is working.
 
