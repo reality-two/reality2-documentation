@@ -26,7 +26,11 @@ The Map view can be used to show Sentants with the Geospatial plugin activated. 
 
 ![](.images/Jd2vONMP14qyL.png)
 
-The Constructor view allows you to use the Blockly system to construct Swarms and Sentants in a non-textual manner.  ***This is not fully functioning as yet*** .
+The Constructor view allows you to use the Blockly system to construct Swarms and Sentants in a non-textual manner.
 
-![](.images/Y89W6IDaAsyiU.png)
+The image below shows a Swarm with two Bees for controlling a strobing light; and a Single Bee for working with Zenquotes and ChatGPT.
+
+![](.images/XgGSdDE7u7RPv.png)
+
+
 
