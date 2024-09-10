@@ -1,6 +1,8 @@
 # Documentation
 
-A great place to start...
+Welcome to the Reality2 documentation.
 
-Go into the [instructions folder](./instructions/README.md) to get going with Reality2 Sentants.
+For a high-level, user-friendly description, check [here](./userfriendly/README.md).
+
+For a more technical description, check [here](./instructions/README.md).
 
