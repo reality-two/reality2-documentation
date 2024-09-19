@@ -4,7 +4,7 @@ Welcome to Reailty2.  This page will give you a high-level understanding of what
 
 But, what does all this actually mean?  To explain, we are using the metaphor of a beehive.
 
-The images included here are from the 'Construct' interface built into the default Sentant Viewer.
+The images included here are from the [Construct mode](./construct.md) built into the default Sentant Viewer.
 
 ## Bees (Beneficent Entities) and Swarms
 
