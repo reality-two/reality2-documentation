@@ -4,8 +4,6 @@ Welcome to Reailty2.  This page will give you a high-level understanding of what
 
 But, what does all this actually mean?  To explain, we are using the metaphor of a beehive.
 
-The images included here are from the [Construct mode](./construct.md) built into the default Sentant Viewer.
-
 ## Bees (Beneficent Entities) and Swarms
 
 Imagine, if you will, that you have a swarm of friendly, intelligent, digital bees that are with you all the time and will help you out when interacting with digital technologies and tools whilst protecting you (and your data).  `Each Bee is a Sentient Digital Agent, or 'Sentant'.`
@@ -56,8 +54,10 @@ Bees have to make decisions depending on their current state of mind, and the ev
 
 Once a decision has been made, it is time to act.  Bees have tasks `(which are 'Actions' in the Finite-State Machine terminology)`.  There is a wide variety of tasks that your Bees can perform, augmented by their Antennae.
 
-*Perhaps you have a Bee programmed to get a daily quote to inspire you, using ChatGPT to explain what it actually means (like* [here](https://github.com/reality-two/reality2-definitions/blob/main/sentants/sentant_zenquote_to_chatgpt.yaml)*).*
+*Perhaps you have a Bee programmed to get a daily quote to inspire you, using ChatGPT to explain what it actually means (like* https://github.com/reality-two/reality2-definitions/blob/main/bees/zenquote_to_chatgpt.bee.yaml*).*
 
-## Conclusion
+## What next?
 
 At the moment, this tool is still in its infancy, but one day, we hope that you will see the 'Reality2 enabled' Bee logo on devices, places and events, and breathe a sigh of relief because you know, therefore, that your Bees will make the experience calm and enjoyable.
+
+For more details, check out the documentation of the [Construct mode](./construct.md) built into the default Sentant Viewer.

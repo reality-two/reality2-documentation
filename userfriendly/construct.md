@@ -20,7 +20,7 @@ When loaded, you should see something like the following:
 
 ![](.images/mainscreen.png)
 
-The Toolbox contains the pieces to construct your definitions from; the Backpack holds pieces loaded from the disk; the place where the definition will be laoded is shown in the Current node (note, this can be different from the URL used in the browser, so you might use one Node to edit Swarms on another Node); and the right hand side has various functions which will be described below.
+The Toolbox contains the pieces to construct your definitions from; the Backpack holds pieces loaded from the disk; the place where the definition will be laoded is shown in the Current node (note, this can be different from the URL used in the browser, so you might use one Node to edit Swarms on another Node); and the right hand side has various functions which will be described below.  The main workspace is where is you construct your Swarm.
 
 The user experience is created using the opensource library [blockly](https://developers.google.com/blockly/guides/get-started/what-is-blockly).
 
@@ -43,6 +43,7 @@ When creating a Swarm, the Bees don't have to be all combined togeher under the 
 To begin, drag a Swarm block from the toolbox, and fill in an appropriate name and optional description.
 
 ![alt text](.images/swarm_create.png)
+
 ![alt text](.images/swarm_create2.png)
 
 ### Adding a Bee
@@ -59,7 +60,7 @@ And either add it to the Swarm, or let it fly free in the work area.
 
 #### Keys and Data
 
-Bees have some optional Data, and encryption / decsryption Keys.  The former is arranged as key / value pairs, where the keys are strings, and the values can be numbers, strings, boolean (true / false) or JSON.  The latter are used when storing data on a node to ensure it is kept secure (see below).
+Bees have some optional Data, and encryption / decryption Keys.  The former is arranged as key / value pairs, where the keys are strings, and the values can be numbers, strings, boolean (true / false) or JSON.  The latter are used when storing data on a node to ensure it is kept secure (see below).
 
 #### Antennae and Behaviours
 
@@ -73,15 +74,15 @@ The examples below show two Antennae, one for ChatGPT and one for Zenquotes.
 
 ![Antennae](.images/antennae-1.png)
 
-There are two ways to interact with APIs, namely GET and POST.  The former is usually used for simpler ones, whereas the latter is often used where the API has complex functionality and interactive capabilities.
+There are two ways to interact with APIs, namely GET and POST.  The former is usually used for simpler APIs, whereas the latter is often used where the API has complex functionality and interactive capabilities.
 
 #### GET Antennae
 
-GET APIs typically contain information to be sent in the 'Headers' and in the query itself, and received information back after a period of time.
+GET APIs typically contain information to be sent in the '`Headers`' and in the `query` itself, and received information back after a period of time.
 
-In the Zenquote API above, the query is: `https://zenquotes.io/api/random`, and a header is required `Content-Type = application/json`.
+In the Zenquote API above, the `query` is: `https://zenquotes.io/api/random`, and a `header` is required `Content-Type = application/json`.
 
-The data is received back in JSON format, and has to be unpacked to get at the actual quote.  For example, using the above query in a browser gives the following:
+The data is received back in [JSON format](https://en.wikipedia.org/wiki/JSON), and has to be unpacked to get at the actual quote.  For example, using the above query in a browser gives the following (if you try this, you'll likely get a different random quote):
 
 ![Zenquote](.images/zenquote.png)
 
@@ -93,7 +94,7 @@ In the example above, when the reply comes back, data with the name 'zenquoute' 
 
 APIs that use POST require more information, such as credentials, and to chose from a greater array of possible capabilities.  The OpenAI API is like this.  The only way to know how these APIs are constructed is to go to their developer help pages.
 
-As with GET, POST Antennae have a query, headers and an OUTPUT.  Additionally, there is a `body` section.
+As with GET, POST Antennae have a `query`, `headers` and an `OUTPUT`.  Additionally, there is a `body` section.
 
 An example of how an API documentation typically looks is as follows (from OpenAI):
 
@@ -103,4 +104,95 @@ These can be quite complex, so we are building a library of ready-made Antennae,
 
 ### Behaviours
 
-Behaviours are how to tell Bees what you want them to do, and is the subject of the rest of this documentation.
+Behaviours are how to tell Bees what you want them to do, and is the subject of the rest of this documentation.  To add a Behaviour to your Bee, drag it from the Toolbox and slot it into the correct place, as below.
+
+![](.images/behaviours.png)
+
+Note that you can have many behaviours for each Bee, as in the image above.  Generally, it pays to keep Decisions grouped logically into different Behaviours.
+
+#### States (of Mind)
+
+In technical terms, each behaviour on a Bee, or Sentant is a Finite State Machine.  This means that each Behaviour represents a 'State of mind' for a Bee.  Since it can have many Behaviours, it can have many States of Mind.  Some of the Decisions don't use the State of Mind capability, and therefore act more like Commands to the Bee to do something.  However, using States of Mind cna greatly increase the complexity and capability of the decisions to be made.
+
+For example, consider a Toggle Switch.  If the light is on, when you press the switch, it turns off, and likewise, if it is off, when you press the switch, it turns on.  To achieve this requires the Bee to remember what state it is currently in (on or off), and then to act accordingly.
+
+![Light](.images/light.png)
+
+Each Behaviour has its own State, meaning that a single Bee can have many different States of Mind at the same time, each acting independently of each other.
+
+### Decisions
+
+Before delving into how to add decisions, let's consider how a Bee knows about the space it is in, how it responds to external and internal stimuli and how it communicates with other devices.
+
+#### Events
+
+The only way a Bee can be influenced is by receiving `events`.  Events can come from various sources such as another Bee, a Bee's antennae, from Internal processes, and as a result of Tasks.  Whether a Bee responds to an event is defined in the Behaviours and subsequent Decisions and Tasks.
+
+```mermaid
+stateDiagram-v2
+    state "Another Bee" as another
+    state "External System" as external
+    
+    external --> Antenna
+    Antenna --> Bee: event
+    another --> Bee: event
+    Internal --> Bee: event
+    Bee --> Tasks
+    Tasks --> Bee: event
+```
+
+One of the most powerful capabilities is that events can be sent from one Bee to another, as illustrated in the setup below:
+
+![Light Bulb and Switch](.images/lightbulbandswitch.png)
+
+In this example, there is a Swarm with three Bees.  The first is a Light Switch, the second is a Light Bulb, and the third is a Bee that works with a Python script to control a Raspberry Pi's pins to turn a LED on and off.  A simplified (and slightly inaccurate) diagram shows the linkages below.
+
+```mermaid
+stateDiagram-v2
+    state "Light Switch" as light
+    state "On" as bulbon
+    state "Off" as bulboff
+    state "Raspberry Pi" as pi
+    state "Light Bulb" as bulb
+    state "External" as external1
+    state "LED" as external2
+
+    light --> bulb: toggle
+
+    bulb --> external1: signal (light on / light off)
+
+    state bulb {
+        bulbon --> bulboff
+        bulboff --> bulbon
+    }
+
+    bulb --> pi: set_pin
+
+    pi --> external2: signal (turn on / turn off)
+```
+
+#### Signals
+
+The signal pointing to 'External' allows us to monitor the state of the Light Bulb from another device.  The Raspoberry Pi Bee uses the same technique to send a message with appropriate data to the Python Script that then turns the LED on and off.  Therefore, Events allow us to send information to Bees, whereas Signals allow us to receive information from Bees.
+
+#### Types of decision
+
+##### Start
+
+![Start Decision](.images/startdecision.png)
+
+When a Bee first starts, it begins in the `start` state, and the `init` event is triggered.  You can then choose which state-of-mind it will take, and perform some tasks, or you can just ignore the state-of-mind if it's not necessary.
+
+##### Instructions
+
+![Command Decision](.images/commanddecision.png) ![Example Bee](.images/examplebee.png)
+
+Commands are the simplest way to instruct Bees, essentially saying 'regardless of your state-of-mind, do this now'.  So, in the example above, the first Instruction asks a question, to which the asnwer s always '42', whilst the second instruction Asks the Bee "Deep Thought' what the question actually is, and signals when it is done (asking the question, not getting the answer).
+
+Notice that the first Decision includes some information about the allowed inputs, in this case a 'question' which is a string (of characters).  Also, notice that is defined as being 'visible'.  Instructions can be `visible` or `internal`.
+
+Looking at the subsequent drawing of the Bee on the WebApp, you can see how the Instructions become Buttons to press when visible.
+
+##### Events
+
+##### Monitor
