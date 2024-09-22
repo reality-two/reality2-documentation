@@ -24,6 +24,21 @@ The Toolbox contains the pieces to construct your definitions from; the Backpack
 
 The user experience is created using the opensource library [blockly](https://developers.google.com/blockly/guides/get-started/what-is-blockly).
 
+__Show Definition__ opens a side panel to show you the actual Sentant / Bee definition that will be used to create the Bee.  For example:
+
+![Definition](.images/definition.png)
+
+Note the example above includes also a table of keys used by the Bee for various purposes.  The \_\_encryption_key\_\_ and \_\_decryption_key\_\_ are used by some of the actions when saving and loading data to and from the node, whereas the \_\_open_api_key\_\_ is used by the OpenAI Behaviour.
+Use the ![keys](.images/load_keys.png) icon to open a JSON file containing the keys, for example:
+
+```json
+{
+    "__openai_api_key__": "sk-[your OpenAI API key]",
+    "__encryption_key__": "a 64bit encoded encryption key",
+    "__decryption_key__": "a 64bit encoded decryption key"
+}
+```
+
 ## Swarms
 
 The main unit is the digital 'Bee', short for 'BEneficient Entity'.  Elsewhere, you may find Bees referred to as Sentants.  'Sentant' is the more technical term and stands for 'Sentient Digital Agents'.
@@ -177,6 +192,8 @@ The signal pointing to 'External' allows us to monitor the state of the Light Bu
 
 #### Types of decision
 
+There are several types of Decision, as described below.  Further, Decisions may, or may not, have prescribed Inputs, which allow you to define how the Instruction or Event look to enquiring external devices.
+
 ##### Start
 
 ![Start Decision](.images/startdecision.png)
@@ -195,4 +212,52 @@ Looking at the subsequent drawing of the Bee on the WebApp, you can see how the 
 
 ##### Events
 
+The most fullsome type of Decision is the `Event` which includes the Bee's 'state-of-mind' when deciding what to do with a given `event` with `inputs`.
+
+![Events Example](.images/Event1.png)
+
+In the example above, the 'Strobe Light' Bee uses these to make decisions what to do in certain circumstances.  For Example:
+
+__'in state * when stop: internal happens, go to stopped' means:__
+- From any state, if a 'stop' event is received, change to state 'stopped'.  There are no tasks, so there is no further action.  The event is defined as 'internal', so can only come from within internal sources such as a Bee on the same node, or another Behaviour on the same Bee.
+
+__'in state * when go: internal happens, go to off' means:__
+- From any state, if a 'go' event is received, change to state 'off'.  In this case, when this happens, a 'turn_on' event is issued directly, which will be picked up by the Decision below.
+
+__'in state off when turn_on: internal happens, go to on' means:__
+- From state 'off', if a 'turn_on' event is received, change to state 'on'.  When this happens, some actions occur, namely, setting the delay to the 'speed' (a value coming in from the Bees inbuilt Data), a turn_off event is sent (after the period of time defined by the delay), and a signal is sent to watching devices of 'turn_on'.
+
+__'in state on when turn_off: internal happens go to off' means:__
+- From state 'on', if a 'turn_off' event is received, change to state 'off'.  When this happens, some actions occur, namely, setting the delay to the 'speed', a turn_on event is sent after the delay, and a signal is sent to watching devices of 'turn_off'.
+
+The net effect of this is that when the Bee received a 'go' event, it oscilates between 'on' and 'off' with a frequency of 'speed' milliseconds, sending signals to any watching device, such as some electronics controlling a light bulb.  When it receives a 'stop' event, it stops doing that.
+
 ##### Monitor
+
+Bees exist on Nodes, which is the hardware they reside in.  There are some internal signals that may be of interest such as the coming and going of other Bees, and the joining and leaving of networks.  A typical example is within the default WebApp, the monitor functionality is used to know when Sentants are created and deleted in order to update the user interface.
+
+![Monitor](.images/monitor.png)
+
+__Types of internal event__
+
+Presently, the following internal events occur:
+
+ - created - when a Sentant / Bee is created.  The name and ID of the Bee is included.
+ - deleted - when a Sentant / Bee is deleted.  The name and ID of the Bee is included.
+
+The following internal events are to come soon:
+
+ - entering - when a Node enters the network proximity of another node.
+ - leaving - when a Node leaves the network proximity of another node.
+
+This will allow Bees to enquire about the availability of Bees, and their external interfaces in the network being entered, and interact with them if so desired.
+
+### Actions
+
+Actions are how Bees get to do stuff, to affect the world around them, and interact with other Bees.  There are inbuilt capabilities that all Bees on all nodes have, and optional capabilities that some Nodes have that Bees may use.  In technical terms, these are in-built plugins, whereas the 'Antennae' are external plugins.
+
+#### Types of Action
+
+##### Send
+
+As the name suggest, the 'send' action is about sending events.  You can send immediately, send after a delay (in millisconds), and send to an Antenna.
