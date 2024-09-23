@@ -282,7 +282,7 @@ Tasks are how Bees get to do stuff, to affect the world around them, and interac
 
 Data accumulates as tasks get performed, one after the other.  We call this 'data flow'.  Further, as events get sent from one place to another, the accumulated data flow goes with that event, gets added to it, and comes back with the returned data.
 
-![](/Users/rdav031/Library/Application%20Support/bluestone/assets/NWcOTGqOcJFaN.png)
+![](.images/chatgpt.png)
 
 For example, in the above Bee, data flows as follows:
 
@@ -312,7 +312,7 @@ For example, in the above Bee, data flows as follows:
 
 5. This is sent as a signal with 'ChatGPT Answer' (and some data saying the result is 'ok'), as shown below.
 
-![](/Users/rdav031/Library/Application%20Support/bluestone/assets/noipo56GTtY0a.png)
+![](.images/chatgpt2.png)
 
 
 
@@ -320,7 +320,7 @@ You can specify data required by an action either directly, or by accumulating i
 
 In the example below, when the Bee is started, it grabs a default latitude and longitude from the inbuilt data, and sets the initial location.  Then, a behaviour is used to set a new latitude and longitude based on user input.  In both cases, `set location`uses the latitude and longitude in the data flow.
 
-![](/Users/rdav031/Library/Application%20Support/bluestone/assets/FxFKTqAkF0deL.png)
+![](.images/dataflow2.png)
 
 #### Types of Task
 
@@ -328,7 +328,7 @@ In the example below, when the Bee is started, it grabs a default latitude and l
 
 As the name suggest, the 'send' action is about sending events.  You can send immediately, send after a delay (in seconds), and send to an Antenna.
 
-![](/Users/rdav031/Library/Application%20Support/bluestone/assets/FKjYJbS122wS8.png)
+![](.images/send.png)
 
 If the 'to' field is left blank, it is sent to the current Bee (as opposed to a different one).
 
@@ -336,18 +336,20 @@ If the 'to' field is left blank, it is sent to the current Bee (as opposed to a 
 
 The Set task allows you to work with data in the data flow.
 
-![](/Users/rdav031/Library/Application%20Support/bluestone/assets/QNHgodsKDKZ0O.png)
+![](.images/set.png)
 
 You can either clear data from the data flow, or set data.  Data can be comprised of a JSONPath, extracted from the immutable data built into the Bee, be a calculation, or simply a number, string of characters, true, false or JSON.
 
-#### Signal
+##### Signal
 
 The signal task is for communicating with devices and WebApps that are connected to the Sentant through the 'subscription' aspect of the GraphQL API.
 
-![](/Users/rdav031/Library/Application%20Support/bluestone/assets/qG9nTtJW2Jmm1.png)
+![](.images/signal.png)
 
 As with Send, this can be with or without extra data to add to the data flow.
 
-#### Test
+##### Test
 
 Sometimes a decision has to be made
+
+![](.images/test.png)
