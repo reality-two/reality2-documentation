@@ -24,12 +24,16 @@ The Toolbox contains the pieces to construct your definitions from; the Backpack
 
 The user experience is created using the opensource library [blockly](https://developers.google.com/blockly/guides/get-started/what-is-blockly).
 
-__Show Definition__ opens a side panel to show you the actual Sentant / Bee definition that will be used to create the Bee.  For example:
+**Show Definition** opens a side panel to show you the actual Sentant / Bee definition that will be used to create the Bee.  For example:
 
-![Definition](.images/definition.png)
+![](.images/definition.png)
 
-Note the example above includes also a table of keys used by the Bee for various purposes.  The \_\_encryption_key\_\_ and \_\_decryption_key\_\_ are used by some of the actions when saving and loading data to and from the node, whereas the \_\_open_api_key\_\_ is used by the OpenAI Behaviour.
-Use the ![keys](.images/load_keys.png) icon to open a JSON file containing the keys, for example:
+Note the example above includes also a table of keys used by the Bee for various purposes.  The __encryption_key__ and __decryption_key__ are used by some of the actions when saving and loading data to and from the node, whereas the __open_api_key__ is used by the OpenAI Behaviour.  
+Use the 
+
+![](.images/load_keys.png)
+
+ icon to open a JSON file containing the keys, for example:
 
 ```json
 {
@@ -39,9 +43,19 @@ Use the ![keys](.images/load_keys.png) icon to open a JSON file containing the k
 }
 ```
 
+### Workflow
+
+```mermaid
+flowchart LR
+    Load --> Construct --> send[Send to node] --> View --> Test --> Save
+    Test --> Construct
+```
+
+Typically, you would load a definition file into the Construct window, or create it from scratch, perhaps from parts loaded from elsewhere (such as Antennae / plugins).  To use it, you have to 'Send it to the Node', whereupon you can change to view mode, test the functionality, perhaps save it, or go round again to tweak it in Construct mode.
+
 ## Swarms
 
-The main unit is the digital 'Bee', short for 'BEneficient Entity'.  Elsewhere, you may find Bees referred to as Sentants.  'Sentant' is the more technical term and stands for 'Sentient Digital Agents'.
+The main unit is the digital 'Bee', short for 'BEneficent Entity'.  Elsewhere, you may find Bees referred to as Sentants.  'Sentant' is the more technical term and stands for 'Sentient Digital Agents'.
 
 A grouping of Bees working together is (of course) a Swarm.
 
@@ -57,21 +71,19 @@ When creating a Swarm, the Bees don't have to be all combined togeher under the 
 
 To begin, drag a Swarm block from the toolbox, and fill in an appropriate name and optional description.
 
-![alt text](.images/swarm_create.png)
+![](.images/swarm_create.png)
 
-![alt text](.images/swarm_create2.png)
+![](.images/swarm_create2.png)
 
 ### Adding a Bee
 
 The next step is to add Bees.  In a similar way, drag a Bee from the toolbox.
 
-![Creating a Bee](.images/bee_create1.png)
+![](.images/bee_create1.png)
 
 And either add it to the Swarm, or let it fly free in the work area.
 
-![Creating a Bee](.images/bee_create2.png)
-
-![Creating a Bee](.images/bee_create3.png)
+![](.images/bee_create2.png)
 
 #### Keys and Data
 
@@ -79,7 +91,7 @@ Bees have some optional Data, and encryption / decryption Keys.  The former is a
 
 #### Antennae and Behaviours
 
-Bees can also have Antennae - to connect to capabilities elsewhere on the Internet, and Behaviours - which are how you tell Bees what you want them to do.  Both of these are covered below.
+Bees have Antennae - to connect to capabilities elsewhere on the Internet, and Behaviours - which are how you tell Bees what you want them to do.
 
 ### Antennae
 
@@ -87,7 +99,7 @@ Bees can have their core functionality extended by either internal or external p
 
 The examples below show two Antennae, one for ChatGPT and one for Zenquotes.
 
-![Antennae](.images/antennae-1.png)
+![](.images/antennae-1.png)
 
 There are two ways to interact with APIs, namely GET and POST.  The former is usually used for simpler APIs, whereas the latter is often used where the API has complex functionality and interactive capabilities.
 
@@ -99,7 +111,7 @@ In the Zenquote API above, the `query` is: `https://zenquotes.io/api/random`, an
 
 The data is received back in [JSON format](https://en.wikipedia.org/wiki/JSON), and has to be unpacked to get at the actual quote.  For example, using the above query in a browser gives the following (if you try this, you'll likely get a different random quote):
 
-![Zenquote](.images/zenquote.png)
+![](.images/zenquote.png)
 
 The `OUTPUT` section of the Antenna defines how to unpack the returned data, and what to send further.  This uses something called a JSON Path, which is a way of navigating through the JSON returned by the API.
 
@@ -113,7 +125,7 @@ As with GET, POST Antennae have a `query`, `headers` and an `OUTPUT`.  Additiona
 
 An example of how an API documentation typically looks is as follows (from OpenAI):
 
-![OpenAI](.images/openai.png)
+![](.images/openai.png)
 
 These can be quite complex, so we are building a library of ready-made Antennae, presently available [through GIThub](https://github.com/reality-two/reality2-definitions), but soon on its own site where, everyone will be able to share the useful bits and pieces they have made.
 
@@ -125,13 +137,13 @@ Behaviours are how to tell Bees what you want them to do, and is the subject of 
 
 Note that you can have many behaviours for each Bee, as in the image above.  Generally, it pays to keep Decisions grouped logically into different Behaviours.
 
-#### States (of Mind)
+#### States (of mind)
 
-In technical terms, each behaviour on a Bee, or Sentant is a Finite State Machine.  This means that each Behaviour represents a 'State of mind' for a Bee.  Since it can have many Behaviours, it can have many States of Mind.  Some of the Decisions don't use the State of Mind capability, and therefore act more like Commands to the Bee to do something.  However, using States of Mind cna greatly increase the complexity and capability of the decisions to be made.
+In technical terms, each behaviour on a Bee / Sentant is a Finite State Machine.  This means that each Behaviour represents a 'State of mind' for a Bee.  Since it can have many Behaviours, it can have many States of Mind.  Some of the Decisions don't use the State of Mind capability, and therefore act more like Commands to the Bee to do something.  However, using States of Mind cna greatly increase the complexity and capability of the decisions to be made.
 
 For example, consider a Toggle Switch.  If the light is on, when you press the switch, it turns off, and likewise, if it is off, when you press the switch, it turns on.  To achieve this requires the Bee to remember what state it is currently in (on or off), and then to act accordingly.
 
-![Light](.images/light.png)
+![](.images/light.png)
 
 Each Behaviour has its own State, meaning that a single Bee can have many different States of Mind at the same time, each acting independently of each other.
 
@@ -141,7 +153,9 @@ Before delving into how to add decisions, let's consider how a Bee knows about t
 
 #### Events
 
-The only way a Bee can be influenced is by receiving `events`.  Events can come from various sources such as another Bee, a Bee's antennae, from Internal processes, and as a result of Tasks.  Whether a Bee responds to an event is defined in the Behaviours and subsequent Decisions and Tasks.
+The only way a Bee can be influenced is by receiving `events`.  Events can come from various sources such as another Bee, a Bee's antennae, from Internal processes, and as a result of Tasks.  Whether a Bee responds to an
+
+ event is defined in the Behaviours and subsequent Decisions and Tasks.
 
 ```mermaid
 stateDiagram-v2
@@ -158,7 +172,7 @@ stateDiagram-v2
 
 One of the most powerful capabilities is that events can be sent from one Bee to another, as illustrated in the setup below:
 
-![Light Bulb and Switch](.images/lightbulbandswitch.png)
+![](.images/lightbulbandswitch.png)
 
 In this example, there is a Swarm with three Bees.  The first is a Light Switch, the second is a Light Bulb, and the third is a Bee that works with a Python script to control a Raspberry Pi's pins to turn a LED on and off.  A simplified (and slightly inaccurate) diagram shows the linkages below.
 
@@ -196,13 +210,17 @@ There are several types of Decision, as described below.  Further, Decisions may
 
 ##### Start
 
-![Start Decision](.images/startdecision.png)
+![](.images/startdecision.png)
 
 When a Bee first starts, it begins in the `start` state, and the `init` event is triggered.  You can then choose which state-of-mind it will take, and perform some tasks, or you can just ignore the state-of-mind if it's not necessary.
 
 ##### Instructions
 
-![Command Decision](.images/commanddecision.png) ![Example Bee](.images/examplebee.png)
+![](.images/commanddecision.png)
+
+ 
+
+![](.images/examplebee.png)
 
 Commands are the simplest way to instruct Bees, essentially saying 'regardless of your state-of-mind, do this now'.  So, in the example above, the first Instruction asks a question, to which the asnwer s always '42', whilst the second instruction Asks the Bee "Deep Thought' what the question actually is, and signals when it is done (asking the question, not getting the answer).
 
@@ -214,20 +232,24 @@ Looking at the subsequent drawing of the Bee on the WebApp, you can see how the 
 
 The most fullsome type of Decision is the `Event` which includes the Bee's 'state-of-mind' when deciding what to do with a given `event` with `inputs`.
 
-![Events Example](.images/Event1.png)
+![](.images/Event1.png)
 
 In the example above, the 'Strobe Light' Bee uses these to make decisions what to do in certain circumstances.  For Example:
 
-__'in state * when stop: internal happens, go to stopped' means:__
+**'in state * when stop: internal happens, go to stopped' means:**
+
 - From any state, if a 'stop' event is received, change to state 'stopped'.  There are no tasks, so there is no further action.  The event is defined as 'internal', so can only come from within internal sources such as a Bee on the same node, or another Behaviour on the same Bee.
 
-__'in state * when go: internal happens, go to off' means:__
+**'in state * when go: internal happens, go to off' means:**
+
 - From any state, if a 'go' event is received, change to state 'off'.  In this case, when this happens, a 'turn_on' event is issued directly, which will be picked up by the Decision below.
 
-__'in state off when turn_on: internal happens, go to on' means:__
+**'in state off when turn_on: internal happens, go to on' means:**
+
 - From state 'off', if a 'turn_on' event is received, change to state 'on'.  When this happens, some actions occur, namely, setting the delay to the 'speed' (a value coming in from the Bees inbuilt Data), a turn_off event is sent (after the period of time defined by the delay), and a signal is sent to watching devices of 'turn_on'.
 
-__'in state on when turn_off: internal happens go to off' means:__
+**'in state on when turn_off: internal happens go to off' means:**
+
 - From state 'on', if a 'turn_off' event is received, change to state 'off'.  When this happens, some actions occur, namely, setting the delay to the 'speed', a turn_on event is sent after the delay, and a signal is sent to watching devices of 'turn_off'.
 
 The net effect of this is that when the Bee received a 'go' event, it oscilates between 'on' and 'off' with a frequency of 'speed' milliseconds, sending signals to any watching device, such as some electronics controlling a light bulb.  When it receives a 'stop' event, it stops doing that.
@@ -236,28 +258,96 @@ The net effect of this is that when the Bee received a 'go' event, it oscilates 
 
 Bees exist on Nodes, which is the hardware they reside in.  There are some internal signals that may be of interest such as the coming and going of other Bees, and the joining and leaving of networks.  A typical example is within the default WebApp, the monitor functionality is used to know when Sentants are created and deleted in order to update the user interface.
 
-![Monitor](.images/monitor.png)
+![](.images/monitor.png)
 
-__Types of internal event__
+**Types of internal event**
 
 Presently, the following internal events occur:
 
- - created - when a Sentant / Bee is created.  The name and ID of the Bee is included.
- - deleted - when a Sentant / Bee is deleted.  The name and ID of the Bee is included.
+- created - when a Sentant / Bee is created.  The name and ID of the Bee is included.
+- deleted - when a Sentant / Bee is deleted.  The name and ID of the Bee is included.
 
 The following internal events are to come soon:
 
- - entering - when a Node enters the network proximity of another node.
- - leaving - when a Node leaves the network proximity of another node.
+- entering - when a Node enters the network proximity of another node.
+- leaving - when a Node leaves the network proximity of another node.
 
 This will allow Bees to enquire about the availability of Bees, and their external interfaces in the network being entered, and interact with them if so desired.
 
-### Actions
+### Tasks
 
-Actions are how Bees get to do stuff, to affect the world around them, and interact with other Bees.  There are inbuilt capabilities that all Bees on all nodes have, and optional capabilities that some Nodes have that Bees may use.  In technical terms, these are in-built plugins, whereas the 'Antennae' are external plugins.
+Tasks are how Bees get to do stuff, to affect the world around them, and interact with other Bees.  There are inbuilt capabilities that all Bees on all nodes have, and optional capabilities that some Nodes have that Bees may use.  In technical terms, these are in-built plugins, whereas the 'Antennae' are external plugins.
 
-#### Types of Action
+#### Data flow
+
+Data accumulates as tasks get performed, one after the other.  We call this 'data flow'.  Further, as events get sent from one place to another, the accumulated data flow goes with that event, gets added to it, and comes back with the returned data.
+
+![](/Users/rdav031/Library/Application%20Support/bluestone/assets/NWcOTGqOcJFaN.png)
+
+For example, in the above Bee, data flows as follows:
+
+1. The Instruction 'Ask ChatGPT' has an input parameter, 'question' (which is a string of characters), so the data flow could be:
+
+   ```json
+   {"question": "What is pi in 10 words or less?"}
+   ```
+
+2. This comes into the Decision and is then sent to the Antenna 'com.openai.api', which is sent inside the body with the `messages`: `[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"__question__"}]`
+
+   - Notice here also the '__question__'.  Sometimes, you need to substitute text in, say, data sent in the body of a POST API with something that has come from elsewhere, such as the question in this case.  Putting double underscores on either side of a string of characters tells the Node to replace that with the contents of the variable in the data flow, in this case the question "What is pi in 10 words or less?".
+
+3. When OpenAI comes back with an answer, the data flow has the answer appended, for example:
+
+   ```json
+   {"question": "What is pi in 10 words or less?", "answer": "Pi is the ratio of a circle's circumference to its diameter."}
+   ```
+
+
+4. This is picked up by the second Decision 'chatgpt_response', and the data 'question' is removed, to give:
+
+   ```json
+   {"answer": "Pi is the ratio of a circle's circumference to its diameter."}
+   ```
+
+
+5. This is sent as a signal with 'ChatGPT Answer' (and some data saying the result is 'ok'), as shown below.
+
+![](/Users/rdav031/Library/Application%20Support/bluestone/assets/noipo56GTtY0a.png)
+
+
+
+You can specify data required by an action either directly, or by accumulating it in the data flow.
+
+In the example below, when the Bee is started, it grabs a default latitude and longitude from the inbuilt data, and sets the initial location.  Then, a behaviour is used to set a new latitude and longitude based on user input.  In both cases, `set location`uses the latitude and longitude in the data flow.
+
+![](/Users/rdav031/Library/Application%20Support/bluestone/assets/FxFKTqAkF0deL.png)
+
+#### Types of Task
 
 ##### Send
 
-As the name suggest, the 'send' action is about sending events.  You can send immediately, send after a delay (in millisconds), and send to an Antenna.
+As the name suggest, the 'send' action is about sending events.  You can send immediately, send after a delay (in seconds), and send to an Antenna.
+
+![](/Users/rdav031/Library/Application%20Support/bluestone/assets/FKjYJbS122wS8.png)
+
+If the 'to' field is left blank, it is sent to the current Bee (as opposed to a different one).
+
+##### Set
+
+The Set task allows you to work with data in the data flow.
+
+![](/Users/rdav031/Library/Application%20Support/bluestone/assets/QNHgodsKDKZ0O.png)
+
+You can either clear data from the data flow, or set data.  Data can be comprised of a JSONPath, extracted from the immutable data built into the Bee, be a calculation, or simply a number, string of characters, true, false or JSON.
+
+#### Signal
+
+The signal task is for communicating with devices and WebApps that are connected to the Sentant through the 'subscription' aspect of the GraphQL API.
+
+![](/Users/rdav031/Library/Application%20Support/bluestone/assets/qG9nTtJW2Jmm1.png)
+
+As with Send, this can be with or without extra data to add to the data flow.
+
+#### Test
+
+Sometimes a decision has to be made
