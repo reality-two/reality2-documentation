@@ -326,7 +326,7 @@ In the example below, when the Bee is started, it grabs a default latitude and l
 
 ##### Send
 
-As the name suggest, the 'send' action is about sending events.  You can send immediately, send after a delay (in seconds), and send to an Antenna.
+As the name suggest, the 'send' action is about sending events.  You can send immediately, send after a delay (in milliseconds), and send to an Antenna.
 
 ![](.images/send.png)
 
@@ -350,6 +350,6 @@ As with Send, this can be with or without extra data to add to the data flow.
 
 ##### Test
 
-Sometimes a decision has to be made
+Sometimes a decision has to be made, and then an event can be sent depending on the outcome.
 
 ![](.images/test.png)
