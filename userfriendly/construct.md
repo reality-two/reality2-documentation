@@ -53,6 +53,8 @@ flowchart LR
 
 Typically, you would load a definition file into the Construct window, or create it from scratch, perhaps from parts loaded from elsewhere (such as Antennae / plugins).  To use it, you have to 'Send it to the Node', whereupon you can change to view mode, test the functionality, perhaps save it, or go round again to tweak it in Construct mode.
 
+NOTE: Bees are not running on the Reality2 Node until they are 'Sent'.  So, just because you can see a Bee in the construct mode, doesn't, necessarily, mean that it is running.
+
 ## Swarms
 
 The main unit is the digital 'Bee', short for 'BEneficent Entity'.  Elsewhere, you may find Bees referred to as Sentants.  'Sentant' is the more technical term and stands for 'Sentient Digital Agents'.
@@ -342,7 +344,7 @@ You can either clear data from the data flow, or set data.  Data can be comprise
 
 ##### Signal
 
-The signal task is for communicating with devices and WebApps that are connected to the Sentant through the 'subscription' aspect of the GraphQL API.
+The signal task is for communicating with devices and WebApps that are connected to the Sentant through the 'subscription' aspect of the GraphQL API.  You can either just send a signal, which takes all the data in the current data flow, and sends it out to any device that is subscribed to that signal, or, you can also add some parameters to go along with the data flow.
 
 ![](.images/signal.png)
 
@@ -350,6 +352,12 @@ As with Send, this can be with or without extra data to add to the data flow.
 
 ##### Test
 
-Sometimes a decision has to be made, and then an event can be sent depending on the outcome.
-
+Sometimes a decision has to be made, and then an event can be sent depending on the outcome.  As with other tasks, you can choose to add some additional parameters to the data flow.  Presently (soon to be made easier), the condition that is tested is in postfix notation (as for doing calculations in the set task).  So, if I want to test if counter is greater than 3, I would write `3 counter >`.
 ![](.images/test.png)
+
+##### Debug
+
+Debug is useful for checking out what the data flow is at that moment in the list of actions.  It would be the same as setting a signal with event 'debug'.
+
+![](.images/debug.png)
+
