@@ -407,10 +407,12 @@ When the message is broadcast from Point A, Points B and C receive the 'hello' e
 
 ##### Storage
 
-In a similar way to variables, the Storage plugin stores and retreives the Data Flow.  However, the retention of the information may extend beyond the life of the Bee.  The data is stored in a local database as an encrypted blob using the name of the Bee, so you need to include the encryption and decryption keys as well.
+In a similar way the Variables plugin, the Storage plugin stores and retreives the Data Flow.  However, the retention of the information may extend beyond the life of the Bee.  The data is stored in a local database as an encrypted blob using the name of the Bee, so you need to include the encryption and decryption keys as well.
 
-A new Bee (or an updated one) can retrieve the data only if it has the same name, and the same encryption and decryption keys.
+A new Bee (or an updated one) can retrieve the data only if it has the same name, and the same encryption and decryption keys, meaning that if you forget your keys, that data is lost.  But also, no-one else can get at it without the keys.
 
-An example of how this is useful could be with the Geospatial Bees so that each time you tweak the programming, and reload the Bees (by first removing them and then adding them again), you don't have to re-move the Bees back to their locations.
+An example of how this is useful could be with the Geospatial Bees so that each time you tweak the programming, and reload the Bees (by first removing them and then adding them again), you don't have to move the Bees back to their locations.
+
+Note the `load into data flow` command when the Bee is loaded at start, and the `save data flow` each time the location is set.
 
 ![](.images/storage.png)
