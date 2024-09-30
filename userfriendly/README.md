@@ -1,3 +1,5 @@
+# Reality2 - Swarms of friendly, helpful Bees.
+
 Welcome to Reailty2.  This page will give you a high-level understanding of what the Reality2 system can do and, to some extent, how it works.
 
 `In technical terms, Reality2 is an embodied agent-based, distributed platform designed to run on a wide selection of networked, Linux-based devices, from wearables to PCs to cloud virtual machines.`
