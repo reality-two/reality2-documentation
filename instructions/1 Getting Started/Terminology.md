@@ -18,4 +18,4 @@
 
 #### Transient Network
 
-- Each node interacts with other nodes through the networks it connects to, in particular wireless networks such as Bluetooth and Wifi.  Sentants are aware of the networks they are on, and actively use them to establish connections for their users.
+- Each node interacts with other nodes through the networks it connects to, in particular wireless networks such as Bluetooth and Wifi, or even LoRa.  Sentants are aware of the networks they are on, and actively use them to establish connections for their users.

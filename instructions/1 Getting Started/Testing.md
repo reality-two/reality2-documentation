@@ -8,13 +8,13 @@ Head on over to the Reality2 Git repository [https://github.com/reality-two/real
 
 Inside the main folder, there is a folder called 'python' which, perhaps not surprisingly, contains some python code that sets up some Sentants.
 
-In the Sentants and Swarms folders, You can also find examples of YAML and JSON files with Sentant and Swarm definitions.
+In the Bees and Swarms folders, You can find examples of YAML and JSON files with Sentant (Bee) and Swarm definitions.
 
 Start yourself a new terminal, leaving the other one you used to start the Reality2 node running, and type the following (I'm assuming you have python3 installed - most linux distributions do):
 
 ```bash
 cd python
-./load ../swarms/ai.reality2.pi_light_and_switch.swarm.json
+./load ../swarms/ai.reality2.strobe.swarm.yaml
 ```
 
 This probably won't work because there are some libraries to install first, most notably:
@@ -131,7 +131,7 @@ In case you are curious, here is the YAML definition file:
 swarm:
   name: Strobing Light and Switch
   description: A Swarm of Sentants to illustrate sending events between Sentants, and the use of delays.
-    
+
   sentants:
     # --------------------------------------------------------------------------------------------------
     # Light Switch Sentant
@@ -151,12 +151,13 @@ swarm:
             public: true
             actions:
 
-              # Set the speed from the Sentant's built in variables.
               - command: set
                 parameters:
                   key: speed
                   value:
                     data: speed
+
+              - command: debug
 
               # Send go event to the Strobe Light Sentant
               - command: send
@@ -165,7 +166,7 @@ swarm:
                   event: go
 
               - command: signal
-                parameters: 
+                parameters:
                   event: Starting Strobe
                   public: true
 
@@ -180,7 +181,7 @@ swarm:
                   event: stop
 
               - command: signal
-                parameters: 
+                parameters:
                   event: Stopping Strobe
                   public: true
     # --------------------------------------------------------------------------------------------------
@@ -194,7 +195,6 @@ swarm:
       - name: bulb
         description: The strobe light bulb
         transitions:
-        
           # Go to the off state on initialisation
           - from: start
             event: init
@@ -221,9 +221,9 @@ swarm:
             actions:
               # Set the delay
               - command: set
-                parameters: 
+                parameters:
                   key: delay
-                  value: __speed__       
+                  value: __speed__
 
               # Send turn_off to self after a delay
               - command: send
@@ -234,7 +234,7 @@ swarm:
               - command: signal
                 parameters:
                   event: turn_on
-                  public: true  
+                  public: true
 
           # turn_off event
           - from: on
@@ -243,7 +243,7 @@ swarm:
             actions:
               # Set the delay
               - command: set
-                parameters: 
+                parameters:
                   key: delay
                   value: __speed__
 

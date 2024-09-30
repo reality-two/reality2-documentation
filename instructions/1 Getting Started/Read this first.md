@@ -1,6 +1,6 @@
 # Read this first
 
-### Current Status (July, 2024)
+### Current Status (October, 2024)
 
 Reality2 is still in early Beta.  That means it is not complete, has bugs, and is likely to change.  You have been warned.
 
@@ -26,7 +26,7 @@ That is the kind of world we'd like to live in, so we've set about building it.
 
 The theoretical framework for Reality2 is based around the concept of data being represented as unique pieces of information that have a defined existance in time and space, much like a real, physical 'thing'.
 
-This is part of the Objects and Actors metaphor that is slowly replacing the Desktop metaphor.
+This is part of the **Objects and Actors** metaphor that is slowly replacing the Desktop metaphor.
 
 Unlike information on the Internet, where an image, sound, video, text etc, is copied many times as it is sent from server to client around the network, a Reality2 document (or Entity) is unique, and can only be passed from one user to another, but not copied.
 

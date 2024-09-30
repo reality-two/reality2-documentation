@@ -12,7 +12,7 @@ To use, head over to the [releases](https://github.com/roycdavies/reality2/relea
 
 ### Compile-it-yourself
 
-If there is no version for your platform and OS, then you'll have to do it the hard way...
+If there is no version for your platform and OS, then you'll have to do it the hard way...  Reality2 nodes work on any unix-like operating system such as Linux, BSD and MacOS.  It should work under WSL on Windows as well.
 
 #### Step 1
 
@@ -20,7 +20,7 @@ If there is no version for your platform and OS, then you'll have to do it the h
 
 #### Step 2
 
-- Clone the [reality2-node-core-elixir](https://github.com/reality-two/reality2-node-core-elixir) GIT repository.  If that doesn't make sense to you, then you should go find that Linux guru.
+- Clone the [reality2-node-core-elixir](https://github.com/reality-two/reality2-node-core-elixir) GIT repository.  If that instruction doesn't make sense to you, then you should go find that Linux guru.
 - I suggest creating a folder called Reality2, and cloning the repository into that folder.  You will end up with a folder inside the Reality2 folder called 'reality2-node-core-elixir'.  In the main Reality2 folder, you can create useful files for private API keys without them ending up in the repository.  For example, below, we create a file to hold your OpenAI API key.
 
 ```bash
@@ -34,7 +34,8 @@ cd reality2-node-core-elixir
 #### Step 3
 
 - Install Erlang and Elixir.  I have found that the installations via [asdf](https://asdf-vm.com/) are good, and you can get the latest versions of Erlang and Elixir.  Be warned, though, that Erlang is compiled from source using this method.  This is mostly fine, except when trying to install on a small wearable linux computer with limited processing power as it can take some time.
-- You may need to install some libraries to compile Erlang:
+- Depending on the version of the OS you are using, you may be able to use the included versions of Erlang and Elixir.  Reality2 requires the newer versions, but, for example, the latest Ubuntu has those in the repository.  In which case, using the standard ways to install (eg with apt-get) will suffice.
+- You may need to install some libraries to compile Erlang (e. for Debian based Linux):
 
 ```bash
 sudo apt install libssl-dev automake autoconf libncurses5-dev

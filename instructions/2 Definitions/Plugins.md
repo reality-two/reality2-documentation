@@ -1,6 +1,6 @@
 # Plugins
 
-One of the core features of Reality2 is to be able to add new features through plugins.  We expect over time that there will become a marketplace of plugins that you can use for your own Sentants.
+One of the core features of Reality2 is to be able to add new features through plugins.  Soon, there will be a marketplace of plugins that you can use for your own Sentants.
 
 There are two types of plugin - inbuilt and external.
 
@@ -84,7 +84,7 @@ As you can see, there are several key sections, namely:
 
 #### A more complex example
 
-This example is taken from the python folder, and shows how you might create a plugin for ChatGPT.  To understand this, you need to look at the [ChatGPT API definition](https://openai.com/blog/introducing-chatgpt-and-whisper-apis).
+This example is taken from the sentant definitions folder, and shows how you might create a plugin for ChatGPT.  To understand this, you need to look at the [ChatGPT API definition](https://openai.com/blog/introducing-chatgpt-and-whisper-apis).
 
 ```YAML
 plugins:

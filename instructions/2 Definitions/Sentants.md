@@ -2,11 +2,9 @@
 
 As with Swarms, Sentants are defined through YAML, JSON or TOML files.  YAML and TOML are easier to read, and you can add comments, but JSON is more precise.
 
-The python folder contains some examples.
-
 Sentants have some basic features to define them.  At the moment, these are quite limited, but later we will be adding more.  Here is the core structure of a Sentant.  The Plugins and Automations Sections are detailed further in subsequent files.
 
-Note that the name of a Sentant has to be unique on the node.
+**Note that the name of a Sentant has to be unique on the node.**
 
 The encryption and decryption keys are base64 encoded 32 byte binary sequences - these are used when storing data to disk.  These may be created in python like this:
 

@@ -196,9 +196,26 @@ Note, you can use [] to get all the values of an arary, so `"a.[].b"` would retu
 
 If you need a more complex calculation, you can use `expr`.
 
-Expressions use [postfix (or reverse polish) notation,](https://en.wikipedia.org/wiki/Reverse_Polish_notation) so to add two values together, the expression would be `1 2 +`
+Expressions use [postfix (or reverse polish) notation,](https://en.wikipedia.org/wiki/Reverse_Polish_notation) so to add two values together, the expression would be `1 2 +`.
 
-You can use the parameters / variables that are being passed along the actions within the expression.
+OR - you can create a 'calculation tree' of binary and unary operations, such as this:
+
+```json
+{
+    "*": [
+        "-": [1],
+        "counter"
+    ]
+}
+```
+
+which is equivalent to `-1 * counter`.
+
+Binary operators have a key followed by an array of two items, eg `"==": ["count", 3]` whereas unary operators have a key with a single element array, such as `"sin": ["count"]`.
+
+Each element of the array can itself be a binary or unary operator, and in that way, a matheatical or logical expression may be constructed.
+
+You can use the parameters / variables that are being passed along the actions within the expression both in postfix notation or calculation tree.
 
 ```json
 {
@@ -251,6 +268,22 @@ Data that is part of the Sentant definition (using the data JSON object) can be 
 ```
 
 This will set the variable `c` in the data stream to the value of the definition data `var1`.  `var1`, since it is defined in the sentant definition, is immutable.
+
+#### test
+
+The test action may be used to test a condition, and then send an event depending on the result, for example:
+
+```yaml
+actions:
+    - command: test
+      parameters:
+        if:
+          ">":
+            - counter
+            - 10
+        then: reset
+        else: increment
+```
 
 #### debug
 

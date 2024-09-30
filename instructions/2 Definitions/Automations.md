@@ -6,11 +6,11 @@ Automations contain Transitions, which in turn have Actions.  The example on wik
 
 ```mermaid
 flowchart LR
-    L((&nbsplocked&nbsp&nbsp)) -- coin --> U((unlocked))
+    L((locked)) -- coin --> U((unlocked))
     U -- push --> L
     U -- coin --> U
     L -- push --> L
-    S((&nbsp&nbsp&nbspstart&nbsp&nbsp&nbsp)) -- init --> L
+    S((start)) -- init --> L
 ```
 
 In Sentant definition notation, that would like this:
