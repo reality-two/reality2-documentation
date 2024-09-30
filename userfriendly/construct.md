@@ -47,6 +47,8 @@ Use the
 
 ```mermaid
 flowchart LR
+
+
     Load --> Construct --> send[Send to node] --> View --> Test --> Save
     Test --> Construct
 ```
@@ -141,13 +143,21 @@ Note that you can have many behaviours for each Bee, as in the image above.  Gen
 
 #### States (of mind)
 
-In technical terms, each behaviour on a Bee / Sentant is a Finite State Machine.  This means that each Behaviour represents a 'State of mind' for a Bee.  Since it can have many Behaviours, it can have many States of Mind.  Some of the Decisions don't use the State of Mind capability, and therefore act more like Commands to the Bee to do something.  However, using States of Mind cna greatly increase the complexity and capability of the decisions to be made.
+In technical terms, each behaviour on a Bee / Sentant is a Finite State Machine.  This means that each Behaviour represents a 'State of mind' for a Bee.  Since it can have many Behaviours, it can have many States of Mind.  Some of the Decisions don't use the State of Mind capability, and therefore act more like Commands to the Bee to do something.  However, using States of Mind can greatly increase the complexity and capability of the decisions to be made.  
 
-For example, consider a Toggle Switch.  If the light is on, when you press the switch, it turns off, and likewise, if it is off, when you press the switch, it turns on.  To achieve this requires the Bee to remember what state it is currently in (on or off), and then to act accordingly.
+In the example below, there are two states, `on` and `off`, with the events `Turn_On` and `Turn_Off` causing it to change state.  Maybe the events represent the flicking of a light switch.
+
+```mermaid
+stateDiagram-v2
+    on --> off: Turn_Off
+    off --> on: Turn_On
+```
+
+In this example, if the light is already on, a `Turn_On` event won't change anything, likewise a `Turn_Off` event if the switch is already off.
 
 ![](.images/light.png)
 
-Each Behaviour has its own State, meaning that a single Bee can have many different States of Mind at the same time, each acting independently of each other.
+Each Behaviour has its own State, meaning that a single Bee can have many different States of Mind at the same time (because it can have many behaviours), each acting independently of the others.
 
 ### Decisions
 
@@ -220,10 +230,6 @@ When a Bee first starts, it begins in the `start` state, and the `init` event is
 
 ![](.images/commanddecision.png)
 
- 
-
-![](.images/examplebee.png)
-
 Commands are the simplest way to instruct Bees, essentially saying 'regardless of your state-of-mind, do this now'.  So, in the example above, the first Instruction asks a question, to which the asnwer s always '42', whilst the second instruction Asks the Bee "Deep Thought' what the question actually is, and signals when it is done (asking the question, not getting the answer).
 
 Notice that the first Decision includes some information about the allowed inputs, in this case a 'question' which is a string (of characters).  Also, notice that is defined as being 'visible'.  Instructions can be `visible` or `internal`.
@@ -280,15 +286,15 @@ This will allow Bees to enquire about the availability of Bees, and their extern
 
 Tasks are how Bees get to do stuff, to affect the world around them, and interact with other Bees.  There are inbuilt capabilities that all Bees on all nodes have, and optional capabilities that some Nodes have that Bees may use.  In technical terms, these are in-built plugins, whereas the 'Antennae' are external plugins.
 
-#### Data flow
+#### Data Flow
 
-Data accumulates as tasks get performed, one after the other.  We call this 'data flow'.  Further, as events get sent from one place to another, the accumulated data flow goes with that event, gets added to it, and comes back with the returned data.
+Data accumulates as tasks get performed, one after the other.  We call this the 'Data Flow'.  Further, as events get sent from one place to another, the accumulated Data Flow goes with that event, gets added to it, and comes back with the returned data.
 
 ![](.images/chatgpt.png)
 
 For example, in the above Bee, data flows as follows:
 
-1. The Instruction 'Ask ChatGPT' has an input parameter, 'question' (which is a string of characters), so the data flow could be:
+1. The Instruction 'Ask ChatGPT' has an input parameter, 'question' (which is a string of characters), so the Data Flow could be:
 
    ```json
    {"question": "What is pi in 10 words or less?"}
@@ -296,9 +302,9 @@ For example, in the above Bee, data flows as follows:
 
 2. This comes into the Decision and is then sent to the Antenna 'com.openai.api', which is sent inside the body with the `messages`: `[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"__question__"}]`
 
-   - Notice here also the '__question__'.  Sometimes, you need to substitute text in, say, data sent in the body of a POST API with something that has come from elsewhere, such as the question in this case.  Putting double underscores on either side of a string of characters tells the Node to replace that with the contents of the variable in the data flow, in this case the question "What is pi in 10 words or less?".
+   - Notice here also the '__question__'.  Sometimes, you need to substitute text in, say, data sent in the body of a POST API with something that has come from elsewhere, such as the question in this case.  Putting double underscores on either side of a string of characters tells the Node to replace that with the contents of the variable in the Data Flow, in this case the question "What is pi in 10 words or less?".
 
-3. When OpenAI comes back with an answer, the data flow has the answer appended, for example:
+3. When OpenAI comes back with an answer, the Data Flow has the answer appended, for example:
 
    ```json
    {"question": "What is pi in 10 words or less?", "answer": "Pi is the ratio of a circle's circumference to its diameter."}
@@ -318,9 +324,9 @@ For example, in the above Bee, data flows as follows:
 
 
 
-You can specify data required by an action either directly, or by accumulating it in the data flow.
+You can specify data required by an action either directly, or by accumulating it in the Data Flow.
 
-In the example below, when the Bee is started, it grabs a default latitude and longitude from the inbuilt data, and sets the initial location.  Then, a behaviour is used to set a new latitude and longitude based on user input.  In both cases, `set location`uses the latitude and longitude in the data flow.
+In the example below, when the Bee is started, it grabs a default latitude and longitude from the inbuilt data, and sets the initial location.  Then, a behaviour is used to set a new latitude and longitude based on user input.  In both cases, `set location`uses the latitude and longitude in the Data Flow.
 
 ![](.images/dataflow2.png)
 
@@ -328,7 +334,7 @@ In the example below, when the Bee is started, it grabs a default latitude and l
 
 ##### Send
 
-As the name suggest, the 'send' action is about sending events.  You can send immediately, send after a delay (in milliseconds), and send to an Antenna.
+As the name suggests, the 'send' action is about sending events.  You can send immediately, send after a delay (in milliseconds), and send to an Antenna.
 
 ![](.images/send.png)
 
@@ -336,28 +342,75 @@ If the 'to' field is left blank, it is sent to the current Bee (as opposed to a 
 
 ##### Set
 
-The Set task allows you to work with data in the data flow.
+The Set task allows you to work with data in the Data Flow.  In the example below, the set command is used in various ways to get data, navigate a JSONPath, remove or clear a variable from the Data Flow.
+
+Note in particular how JSONPath can also include references to variables in the Data Flow, ie: `prime_data.primes.__counter__` means in the JSON data called `prime_data`, go into the `primes` object, and pick out the element from that array defined by the value of `counter`.
 
 ![](.images/set.png)
 
-You can either clear data from the data flow, or set data.  Data can be comprised of a JSONPath, extracted from the immutable data built into the Bee, be a calculation, or simply a number, string of characters, true, false or JSON.
+You can either clear data from the Data Flow, or set data.  Data can be comprised of a JSONPath, extracted from the immutable data built into the Bee, be a calculation, or simply a number, string of characters, true, false or JSON.
 
 ##### Signal
 
-The signal task is for communicating with devices and WebApps that are connected to the Sentant through the 'subscription' aspect of the GraphQL API.  You can either just send a signal, which takes all the data in the current data flow, and sends it out to any device that is subscribed to that signal, or, you can also add some parameters to go along with the data flow.
+The signal task is for communicating with devices and WebApps that are connected to the Sentant through the 'subscription' aspect of the GraphQL API.  You can either just send a signal, which takes all the data in the current Data Flow, and sends it out to any device that is subscribed to that signal, or, you can also add some parameters to go along with the Data Flow.
 
 ![](.images/signal.png)
 
-As with Send, this can be with or without extra data to add to the data flow.
 
 ##### Test
 
-Sometimes a decision has to be made, and then an event can be sent depending on the outcome.  As with other tasks, you can choose to add some additional parameters to the data flow.  Presently (soon to be made easier), the condition that is tested is in postfix notation (as for doing calculations in the set task).  So, if I want to test if counter is greater than 3, I would write `3 counter >`.
+Sometimes a decision has to be made, and then an event can be sent depending on the outcome.  As with other tasks, you can choose to add some additional parameters to the Data Flow.  In the example here, there is a test in the form of `if counter >= 4 send reset otherwise send increment to me`.
+
 ![](.images/test.png)
 
 ##### Debug
 
-Debug is useful for checking out what the data flow is at that moment in the list of actions.  It would be the same as setting a signal with event 'debug'.
+Debug is useful for checking out what the Data Flow is at that moment in the list of actions.  It would be the same as setting a signal with event 'debug'.
 
 ![](.images/debug.png)
 
+#### Plugin Tasks
+
+Bees come with a set of core, inbuilt capabilities - Decisions and Tasks as above.  In addition, there can be Tasks supported by plugins, or Antennae.  The antennae above were defined through the definition file, as links to other capabilities and resources elsewhere on the intranet or internet.
+
+Inbuilt Plugins or Antennae are included with the Node, and may vary from node to node, as below.  These may be built by Reality2 or others.
+
+##### Variables
+
+In programming, Variables are a way of describing data that can be worked on.  It might be strings of characters, numbers, the concepts of true or false, or much more complex entities (called data structures).
+
+Data Flow variables are created and exist for the moment the Actions in the Decision exist.  If an event is being sent, the Data Flow can be passed on, but otherwise, each time a Decision begins afresh, the Data Flow is empty (though it may have some initial data from user Inputs).
+
+Sometimes, however, you want to maintain some consistent data between Decisions.  To do this, we use the 'Variables' plugin.  Internally, this is the 'ai.reality2.vars' plugin.
+
+Variables only exist for the life-time of the Bee.  If the Bee is deleted, this data is lost.
+
+
+![](.images/variables.png)
+
+
+##### Geospatial
+
+Sometimes, we want to be able to represent a location in the world.  Using geospatial coordinates: Latitude and Longitude allows us to do that.  The Geospatial set of Tasks works with geo-location, as well as Altitude.  You can also represent position by a '[GeoHash](https://en.wikipedia.org/wiki/Geohash)', which is a text-based representation of latitude and longitude.
+
+The example below shows a minimal setup for a 'Geospatial' Bee that maintains its position (using variables), and illustrates how the 'Search within radius' functionality works.  Here, you see three Geospatial Bees.
+
+![](.images/geospatial.png)
+
+And, this is what it they may look like in map view.  Note that when the Bees are first created, they start off at location 0, 0 (just off the coast of Africa), so they need to be moved to the desired location (in this case, by dragging on the map).
+![](.images/geoswarm.png)
+
+When the message is broadcast from Point A, Points B and C receive the 'hello' event with the message "Hello There" due to being within the radius given (in meters).
+
+![](.images/geospatial_hello.png)
+
+
+##### Storage
+
+In a similar way to variables, the Storage plugin stores and retreives the Data Flow.  However, the retention of the information may extend beyond the life of the Bee.  The data is stored in a local database as an encrypted blob using the name of the Bee, so you need to include the encryption and decryption keys as well.
+
+A new Bee (or an updated one) can retrieve the data only if it has the same name, and the same encryption and decryption keys.
+
+An example of how this is useful could be with the Geospatial Bees so that each time you tweak the programming, and reload the Bees (by first removing them and then adding them again), you don't have to re-move the Bees back to their locations.
+
+![](.images/storage.png)
