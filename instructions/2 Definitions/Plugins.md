@@ -74,7 +74,7 @@ As you can see, there are several key sections, namely:
 - **url** - the URL of the API
 - **method** - the method for the API - usually GET or POST
 - **headers** - some relevant headers.  Quite often, you will need to include some form of authentication key.
-- **body** - when using POST, what the body of the message looks like (see example below).
+- **body** - when using POST, what the body of the message looks like (see example below).  This may be json or a string, as defined by the header 'Content-Type'.
 - **output** - what to do with the results that come back from the API call.  The result is sent as an event with parameters.
 
   - **event** - the event to send to the Automations on this Sentant
