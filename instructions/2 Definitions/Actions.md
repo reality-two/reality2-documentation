@@ -6,7 +6,7 @@ There are many actions (sometimes called side-effects in Finite State Machine do
 
 Send an event to a Sentant.
 
-- **to** - (optional) the name of the Sentant to send the event to.  Presently, only to Sentants on this Reality2 node, but later, will be able to use a Path.  If no to field is given, then the event is sent to this Sentant.
+- **to** - (optional) the name of the Sentant to send the event to.  Presently, only to Sentants on this Reality2 node, but later, will be able to use a Path.  If no to field is given, then the event is sent to this Sentant.  If the to field is '*', send to all Sentants on this Reality2 node.
 - **event** - the event to send.
 - **parameters** - (optional) - some other data to send along with the event.
 - **delay** - (optional) - a delay in milliseconds.  If omitted, the event is sent immediately.
