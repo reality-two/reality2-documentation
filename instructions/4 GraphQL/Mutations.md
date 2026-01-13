@@ -70,11 +70,16 @@ mutation SentantUnload($id: UUID4!) {
 ### sentantSend
 
 - Sends an event and parameters to a Sentant.
+- The `id` parameter can be:
+  - A simple UUID (e.g., `"abc12345-..."`) for local sentants
+  - A combined `nodeId|sentantId` format for remote routing (e.g., `"nodeUUID|sentantUUID"`)
+  - Names can also be used: `nodeName|sentantName` or any combination of IDs and names
+- When a remote node reference is provided, the event is automatically forwarded via HTTP to the appropriate node in the mesh.
 - Returns the Sentant details.
-- Example:
+- Example (local sentant):
 
 ```graphql
-mutation SentantSend($id: UUID4!, $event: String!, $parameters: Json, $passthrough: Json) {
+mutation SentantSend($id: String!, $event: String!, $parameters: Json, $passthrough: Json) {
     sentantSend(id: $id, event: $event, parameters: $parameters, passthrough: $passthrough) {
         name
         id
@@ -84,6 +89,18 @@ mutation SentantSend($id: UUID4!, $event: String!, $parameters: Json, $passthrou
             parameters
         }
         signals
+    }
+}
+```
+
+- Example (remote sentant via mesh):
+
+```graphql
+# Variables: { "id": "R2Node_ABC1|my_sentant", "event": "start", "parameters": {} }
+mutation SentantSend($id: String!, $event: String!, $parameters: Json, $passthrough: Json) {
+    sentantSend(id: $id, event: $event, parameters: $parameters, passthrough: $passthrough) {
+        name
+        id
     }
 }
 ```

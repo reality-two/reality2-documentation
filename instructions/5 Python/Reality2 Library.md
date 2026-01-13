@@ -31,6 +31,7 @@ For your convenience, there is a Reality2 library for working with the GraphQL i
 #### `sentantSend (id, event, parameters, passthrough = {}, details = "id name")`
 
 - Send an event and parameters to a Sentant.  Event is a string, Parameters is a dict (ie JSON). Returns the Sentant.  Details is a string for the details to be returned by the command.  Passthrough is a dict that is sent along with the parameters, and might eventually come out as passthrough parameters from a signal.
+- The `id` parameter supports remote routing: use `nodeId|sentantId` or `nodeName|sentantName` format to send events to sentants on other nodes in the mesh.
 
 #### `sentantUnload (id, passthrough = {}, details = "id name")`
 
