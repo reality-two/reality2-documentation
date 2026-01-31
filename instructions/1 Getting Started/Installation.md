@@ -128,6 +128,19 @@ iex(1)>
 
 Congratulations, you now have a Reality2 node up and running.  Feels good, doesn't it?  Your life is coming together.
 
+#### Autostart
+
+Any Sentant or Swarm definition files placed in the `autostart/` folder will be loaded automatically when the node starts (or restarts).  This is useful for Sentants that should always be available — drop the YAML, JSON or TOML file in there and they will appear every time the node comes up.
+
+#### Locking a Node
+
+By default, a node is unlocked — anyone with API access can load or unload Sentants and Swarms at any time.  You can restrict this using the `LOCKED` environment variable in the run script:
+
+- `export LOCKED="true"` — the node is fully locked after autostart.  No Sentants or Swarms may be created or deleted via the API.
+- `export LOCKED="remote"` — only local API connections (from the same machine) can create or delete Sentants.  Remote clients are locked out.
+
+This is set in the `scripts/run_as_dev` or `scripts/run_as_prod` script.  Change it before starting the node.
+
 #### Step 8
 
 - Have a look at it.  Open a browser and go to `https://lcoalhost:4005`.  Click past the info about this being a potentially dangerous site due to self-signed certificates.  You accept the risk, right? (if you want, you can make your own certificates - a good idea actually - that can be a bit of homework).
