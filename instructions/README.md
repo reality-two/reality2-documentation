@@ -14,4 +14,5 @@ Welcome.  You are about to become the proud owner of a shiny new Reality2 node. 
 8. [Creating a WebApp - step-by-step instructions](8%20Adding%20a%20WebApp/README.md)
 9. [WebApp Examples - some example WebApps](9%20WebApp%20Examples/README.md)
 10. [Rust Plugins - Using Rust in a Reality2 Plugin](10%20Rust%20Plugins/README.md)
+11. [TransNet & Hives - mesh networking, hive identity, and the Waggle Finding Service](11%20TransNet%20%26%20Hives/README.md)
 

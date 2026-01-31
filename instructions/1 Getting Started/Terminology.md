@@ -18,4 +18,12 @@
 
 #### Transient Network
 
-- Each node interacts with other nodes through the networks it connects to, in particular wireless networks such as Bluetooth and Wifi, or even LoRa.  Sentants are aware of the networks they are on, and actively use them to establish connections for their users.
+- Each node interacts with other nodes through the networks it connects to — Bluetooth, WiFi, LoRa and the internet.  These links are often temporary (hence "transient").  Sentants are aware of the networks they are on, and actively use them to establish connections for their users.  The TransNet subsystem manages discovery and communication across all available transports.
+
+#### Hive
+
+- A group of Nodes that share a cryptographic identity.  Hive members discover each other automatically over whatever transports are available and cooperate to route events and signals.  A Hive is the unit of trust and collaboration in the mesh.
+
+#### WFS (Waggle Finding Service)
+
+- The naming and routing service that locates Sentants across Nodes and Hives.  When you send an event to a Sentant by name, WFS resolves where that Sentant lives and routes the event there — whether it is on the same Node, in the same Hive, or on a remote Hive reachable through the mesh.

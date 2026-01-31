@@ -14,6 +14,12 @@ The main Reality2 folder contains several subfolders with code and examples.  Th
 - **deps**
   The dependencies for the Elixir code for the Reality2 Node.  These are built when you run `./scripts/deps.get`
 
+- **autostart**
+  Sentant and Swarm definitions that are loaded automatically when the node starts.
+
+- **documents**
+  Project documentation and roadmaps (e.g. the TransNet roadmap).
+
 - **extras**
   A couple of libraries you might need, conveniently located.
 
@@ -24,5 +30,5 @@ The main Reality2 folder contains several subfolders with code and examples.  Th
   Various scripts for running the Reality2 node and making runtime versions.  Switch to this directory before running as some files are created relative to this folder.
 
 - **web**
-  The WebApps running on this node.
+  The web front-end applications running on this node, including the main Sentant dashboard (Svelte with Blockly visual programming), IoT demos, and mesh network visualisers.
 

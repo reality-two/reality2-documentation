@@ -50,7 +50,7 @@ To ensure the plugin is included, you need to add it to the `PLUGINS` environmen
 ```bash
 #!/bin/bash
 export MIX_ENV=dev
-export PLUGINS="ai.reality2.vars, ai.reality2.geospatial, ai.reality2.pns, ai.reality2.auth, ai.reality2.backup, ai.reality2.rustdemo" # <------------ HERE
+export PLUGINS="ai.reality2.vars, ai.reality2.geospatial, ai.reality2.wfs, ai.reality2.auth, ai.reality2.backup, ai.reality2.rustdemo" # <------------ HERE
 
 # If in the Scripts directory, move up one level
 if ! [ -d "scripts" ]; then

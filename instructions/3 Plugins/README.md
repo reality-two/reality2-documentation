@@ -26,27 +26,27 @@ Let's look at some inbuilt definitions and plugin definitions that you might fin
 
 3. ai.reality2.auth
 
-   - (to come) Authentication and user ID management.
+   - (to come) Authentication and identity management.
 
-4. ai.reality2.pns
+4. ai.reality2.wfs
 
-   - (to come) Pathing Name System - how to find, send events to, and listen for signals from other Sentants in the world.
+   - Waggle Finding Service (WFS) — locate, send events to, and listen for signals from Sentants across Nodes and Hives.
 
 5. ai.reality2.files
 
-   - (to come) File storage, uploading and downloading.
+   - (planned) File storage, uploading and downloading.
 
 6. ai.reality2.media
 
-   - (to come) Audio, video and other multimedia streaming (may be part of the files plugin).
+   - (planned) Audio, video and other multimedia streaming (may be part of the files plugin).
 
 7. com.unihiker.api
 
-   - (to come) Read sensors and control a [unihiker Single Board Computer](https://www.unihiker.com).  This will only work when the Reality2 Node is running on a Unihiker SBC.
+   - (planned) Read sensors and control a [unihiker Single Board Computer](https://www.unihiker.com).  This will only work when the Reality2 Node is running on a Unihiker SBC.
 
 8. com.raspberrypi.api
 
-   - (to come) Read sensors and control a [raspberry PI Single Board Computer](https://www.raspberrypi.com/).  This will only work when the Reality2 Node is running on a Raspberry PI SBC.
+   - (planned) Read sensors and control a [raspberry PI Single Board Computer](https://www.raspberrypi.com/).  This will only work when the Reality2 Node is running on a Raspberry PI SBC.
 
 
 #### external
